@@ -1,0 +1,27 @@
+Milestone No. ,Milestone Details ,Delivery date
+1,Sign Up/Login/Task Creation,05-Jan
+, Customer side sign up,
+,Service provider side sign up,
+,Customer login,
+,Service provider login,
+,Create task,
+,View task on Map. (Service provider),
+,View task Detail,
+,Request task,
+,,
+2,Task Manager,13-Jan
+,View created task (Customer),
+, View list of applicants (Customer),
+, View Service provider profile (Customer),
+,Accept or reject Service provider (Customer),
+,,
+,Search task using keyword,
+,View list of task,
+,"Current, Upcoming, Past task",
+,Start and End task,
+,Mark task as complete for Current task,
+,,
+3,Chat between Customer and service provider,20-Jan
+,Payment integration ,
+,,
+4,Feedback and Setting,25-Jan

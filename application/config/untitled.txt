@@ -1,0 +1,24 @@
+SELECT m.Id, m.SenderId, m.ReceiverId, m.MessageText, m.ConversationId,
+                                     m.CreatedDate, CASE WHEN u2.userId = '.$userId.' THEN u1.name
+                                                            ELSE u2.name
+                                                            END as ParticipantName,
+                                                            CASE WHEN u2.userId = '.$userId.' THEN u1.ProfilePic
+                                                            ELSE u2.ProfilePic
+                                                            END as ParticipantProfilePic,
+                                                            CASE WHEN u2.userId = '.$userId.' THEN u1.userId
+                                                            ELSE u2.userId
+                                                            END as ParticipantUserId,
+                                                            m.IsRead,
+                                                            t.title as TaskName,
+                                                            t.taskId
+                        FROM tbl_messages m
+                        JOIN tbl_users u1 ON m.SenderId=u1.userId
+                        JOIN tbl_users u2 ON m.ReceiverId=u2.userId
+                        JOIN taskuserrequest tr on tr.userId = (SELECT CASE WHEN u2.userId = '.$userId.' THEN u1.userId
+                        ELSE u2.userId END)
+                        JOIN tbl_task t on t.taskId = tr.taskId
+                        WHERE m.Id IN (
+                        SELECT MAX(id)
+                        FROM tbl_messages
+                        WHERE SenderId = '.$userId.' OR ReceiverId = '.$userId.'
+                        GROUP BY ConversationId, t.taskId) ORDER BY m.CreatedDate DESC
